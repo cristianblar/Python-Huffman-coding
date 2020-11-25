@@ -41,6 +41,12 @@ class Tree:
 
     def binary_codes_traversal(self):
         binary_codes = {}
+
+        if (self.root.get_left_child() is None) and (
+                self.root.get_right_child() is None):
+            binary_codes[self.root.get_character()] = '1'
+            return binary_codes
+
         path = []
 
         def traverse(node):
@@ -126,6 +132,12 @@ def huffman_decoding(encoded_data, tree):
     current_node = tree.get_root()
 
     decoded_data = ''
+
+    if (current_node.get_left_child() is None) and (
+            current_node.get_right_child() is None):
+        decoded_data += current_node.get_character() *\
+            current_node.get_frequency()
+        return decoded_data
 
     for idx, bit in enumerate(encoded_data):
         if bit == '0':
@@ -249,6 +261,82 @@ if __name__ == "__main__":
         a_great_sentence))
     print('The size of the data to encode is: {}.\n'.format(
         sys.getsizeof(str(a_great_sentence))))
+
+    encoded_data, tree = huffman_encoding(a_great_sentence)
+
+    print('The data has been encoded.\n')
+
+    print('The content of the encoded data is: {}.\n'.format(encoded_data))
+    print('The size of the encoded data is: {}.\n'.format(
+        sys.getsizeof(int(encoded_data, base=2))))
+
+    decoded_data = huffman_decoding(encoded_data, tree)
+
+    print('The data has been decoded.\n')
+
+    print('The content of the decoded data is: {}.\n'.format(decoded_data))
+    print('The size of the decoded data is: {}.\n'.format(
+        sys.getsizeof(decoded_data)))
+
+
+    # TEST CASE 6:
+    print('TEST CASE 6:')
+    a_great_sentence = 'AAAAAAAAAA'
+
+    print('The content of the data to encode is: {}.\n'.format(
+        a_great_sentence))
+    print('The size of the data to encode is: {}.\n'.format(
+        sys.getsizeof(a_great_sentence)))
+
+    encoded_data, tree = huffman_encoding(a_great_sentence)
+
+    print('The data has been encoded.\n')
+
+    print('The content of the encoded data is: {}.\n'.format(encoded_data))
+    print('The size of the encoded data is: {}.\n'.format(
+        sys.getsizeof(int(encoded_data, base=2))))
+
+    decoded_data = huffman_decoding(encoded_data, tree)
+
+    print('The data has been decoded.\n')
+
+    print('The content of the decoded data is: {}.\n'.format(decoded_data))
+    print('The size of the decoded data is: {}.\n'.format(
+        sys.getsizeof(decoded_data)))
+
+    # TEST CASE 7:
+    print('TEST CASE 7:')
+    a_great_sentence = 'AB'
+
+    print('The content of the data to encode is: {}.\n'.format(
+        a_great_sentence))
+    print('The size of the data to encode is: {}.\n'.format(
+        sys.getsizeof(a_great_sentence)))
+
+    encoded_data, tree = huffman_encoding(a_great_sentence)
+
+    print('The data has been encoded.\n')
+
+    print('The content of the encoded data is: {}.\n'.format(encoded_data))
+    print('The size of the encoded data is: {}.\n'.format(
+        sys.getsizeof(int(encoded_data, base=2))))
+
+    decoded_data = huffman_decoding(encoded_data, tree)
+
+    print('The data has been decoded.\n')
+
+    print('The content of the decoded data is: {}.\n'.format(decoded_data))
+    print('The size of the decoded data is: {}.\n'.format(
+        sys.getsizeof(decoded_data)))
+
+    # TEST CASE 8:
+    print('TEST CASE 8:')
+    a_great_sentence = ' '
+
+    print('The content of the data to encode is: {}.\n'.format(
+        a_great_sentence))
+    print('The size of the data to encode is: {}.\n'.format(
+        sys.getsizeof(a_great_sentence)))
 
     encoded_data, tree = huffman_encoding(a_great_sentence)
 
